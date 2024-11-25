@@ -27,7 +27,7 @@ export const fetchCourses = async (filters, page) => {
   ];
 
   // Filter courses based on user inputs
-  return mockData.filter((course) => {
+  const filteredCourses = mockData.filter((course) => {
     let isValid = true;
     if (filters.category && filters.category !== course.category) isValid = false;
     if (filters.skillLevel && filters.skillLevel !== course.skillLevel) isValid = false;
@@ -37,4 +37,11 @@ export const fetchCourses = async (filters, page) => {
     }
     return isValid;
   });
+
+  // Pagination logic: 9 courses per page
+  const coursesPerPage = 9;
+  const startIndex = (page - 1) * coursesPerPage;
+  const endIndex = startIndex + coursesPerPage;
+
+  return filteredCourses.slice(startIndex, endIndex);
 };

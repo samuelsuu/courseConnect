@@ -21,20 +21,22 @@ const CourseDetailsPage = () => {
   // Handle enroll action
   const handleEnroll = () => {
     if (!course) return;
-
+  
     setIsLoading(true);
-
-    // Simulate processing delay
+  
     setTimeout(() => {
       if (course.price === 0) {
-        alert('Enrollment successful!'); // Notify the user for free courses
+        alert('Enrollment successful!');
         navigate('/order-summary');
       } else {
-        navigate('/payment'); // Redirect to payment for paid courses
+        navigate('/payment', {
+          state: { amount: course.price }, // Pass the course price to the payment page
+        });
       }
     }, 1500);
   };
-
+  
+  
   if (!course) {
     return (
       <div className="flex items-center justify-center h-screen">
