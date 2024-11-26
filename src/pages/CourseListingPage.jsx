@@ -7,17 +7,17 @@ import Pagination from '../components/Pagination';
 const CourseListingPage = () => {
   const [courses, setCourses] = useState([]);
   const [filters, setFilters] = useState({ category: '', price: '', skillLevel: '' });
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page
-  const [totalCourses, setTotalCourses] = useState(0); // Track the total number of courses
-  const coursesPerPage = 9; // Number of courses per page
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [totalCourses, setTotalCourses] = useState(0); 
+  const coursesPerPage = 9; 
   const navigate = useNavigate();
 
   // Fetch courses when filters or currentPage changes
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchCourses(filters, currentPage); // Fetch filtered courses for the current page
+      const data = await fetchCourses(filters, currentPage); 
       setCourses(data);
-      setTotalCourses(data.length); // Assuming you know the total number of filtered courses from the API
+      setTotalCourses(data.length); 
     };
     fetchData();
   }, [filters, currentPage]);
